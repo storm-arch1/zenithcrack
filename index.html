@@ -1100,6 +1100,8 @@
           <h3>Сборки для скачивания</h3>
           <ul>
             <li>zenith crack.zip — 13 MB</li>
+            <li>zenith crack v2.0.zip — 15 MB</li>
+            <li>zenith crack portable.zip — 10 MB</li>
           </ul>
         </article>
 
@@ -1123,4 +1125,183 @@
       </div>
     </footer>
     
-    <div class="security-badge" id
+    <div class="security-badge" id="securityBadge">
+      <i class="fas fa-shield-alt"></i>
+      <span>Защита активна</span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Create floating particles
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      const size = Math.random() * 3 + 1;
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 5;
+      
+      particle.style.left = `${left}%`;
+      particle.style.top = `${top}%`;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      
+      particlesContainer.appendChild(particle);
+    }
+    
+    // Create 3D background cubes
+    const threeDBg = document.getElementById('threeDBg');
+    const cubeCount = 8;
+    
+    for (let i = 0; i < cubeCount; i++) {
+      const cube = document.createElement('div');
+      cube.classList.add('cube');
+      
+      const left = Math.random() * 90;
+      const top = Math.random() * 90;
+      const size = Math.random() * 60 + 40;
+      const duration = Math.random() * 30 + 20;
+      const delay = Math.random() * 10;
+      
+      cube.style.left = `${left}%`;
+      cube.style.top = `${top}%`;
+      cube.style.width = `${size}px`;
+      cube.style.height = `${size}px`;
+      cube.style.animationDuration = `${duration}s`;
+      cube.style.animationDelay = `${delay}s`;
+      
+      for (let j = 0; j < 6; j++) {
+        const face = document.createElement('div');
+        face.classList.add('cube-face');
+        cube.appendChild(face);
+      }
+      
+      threeDBg.appendChild(cube);
+    }
+    
+    // DDoS Protection System
+    const ddosProtection = document.getElementById('ddosProtection');
+    const mainContent = document.getElementById('mainContent');
+    const loadingProgress = document.getElementById('loadingProgress');
+    const timerValue = document.getElementById('timerValue');
+    const securityBadge = document.getElementById('securityBadge');
+    
+    // Status elements
+    const browserCheck = document.getElementById('browserCheck');
+    const behaviorCheck = document.getElementById('behaviorCheck');
+    const botCheck = document.getElementById('botCheck');
+    const ddosCheck = document.getElementById('ddosCheck');
+    
+    // Simulate DDoS protection check
+    let progress = 0;
+    let timeLeft = 5;
+    
+    const protectionInterval = setInterval(() => {
+      progress += 20;
+      timeLeft -= 1;
+      
+      loadingProgress.style.width = `${progress}%`;
+      timerValue.textContent = timeLeft;
+      
+      // Update status checks
+      if (progress >= 25) {
+        browserCheck.innerHTML = '<i class="fas fa-check"></i> Пройдена';
+        browserCheck.className = 'status-value status-success';
+      }
+      
+      if (progress >= 50) {
+        behaviorCheck.innerHTML = '<i class="fas fa-check"></i> Успешно';
+        behaviorCheck.className = 'status-value status-success';
+      }
+      
+      if (progress >= 75) {
+        botCheck.innerHTML = '<i class="fas fa-check"></i> Заблокировано';
+        botCheck.className = 'status-value status-success';
+      }
+      
+      if (progress >= 100) {
+        ddosCheck.innerHTML = '<i class="fas fa-check"></i> Активна';
+        ddosCheck.className = 'status-value status-success';
+        
+        clearInterval(protectionInterval);
+        
+        // Show main content after protection check
+        setTimeout(() => {
+          ddosProtection.style.display = 'none';
+          mainContent.style.display = 'block';
+          securityBadge.classList.add('active');
+        }, 1000);
+      }
+    }, 1000);
+    
+    // Additional security checks
+    function performSecurityChecks() {
+      // Check if JavaScript is enabled (basic bot detection)
+      if (typeof window === 'undefined') {
+        window.location.reload();
+      }
+      
+      // Check screen resolution (basic human detection)
+      if (screen.width < 100 || screen.height < 100) {
+        window.location.reload();
+      }
+      
+      // Check user agent
+      const userAgent = navigator.userAgent;
+      if (!userAgent || userAgent.length < 10) {
+        window.location.reload();
+      }
+      
+      // Add random delay to prevent automated requests
+      const randomDelay = Math.random() * 2000 + 1000;
+      return new Promise(resolve => setTimeout(resolve, randomDelay));
+    }
+    
+    // Run security checks
+    performSecurityChecks();
+    
+    // Add scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements for scroll animations after protection check
+    setTimeout(() => {
+      document.querySelectorAll('.feature, .post, .screenshot').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+      });
+    }, 6000);
+    
+    // Add mouse move 3D effect
+    document.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      
+      const elements = document.querySelectorAll('.feature, .post, .screenshot, .preview');
+      elements.forEach(el => {
+        el.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      });
+    });
+  </script>
+</body>
+</html>
