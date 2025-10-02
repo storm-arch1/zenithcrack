@@ -46,6 +46,134 @@
       padding: 0 20px;
     }
 
+    /* DDoS Protection Overlay */
+    .ddos-protection {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .protection-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 36px;
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+      color: #fff;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.6);
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        transform: scale(1);
+      }
+    }
+
+    .protection-title {
+      font-size: 32px;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .protection-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .protection-status {
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .status-item:last-child {
+      border-bottom: none;
+    }
+
+    .status-name {
+      color: var(--text-secondary);
+    }
+
+    .status-value {
+      font-weight: 600;
+    }
+
+    .status-checking {
+      color: #fbbf24;
+    }
+
+    .status-success {
+      color: #10b981;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .loading-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .protection-timer {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    /* Main Content (hidden during protection check) */
+    .main-content {
+      display: none;
+    }
+
     /* Header */
     header {
       padding: 20px 0;
@@ -94,21 +222,10 @@
       box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
       color: #fff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: pulse 2s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
-      }
-      100% {
-        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
-      }
     }
 
     .logo:hover {
       transform: scale(1.05) rotate(5deg);
-      animation: none;
     }
 
     .brand-text h1 {
@@ -117,16 +234,6 @@
       background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: textGlow 3s infinite alternate;
-    }
-
-    @keyframes textGlow {
-      0% {
-        filter: drop-shadow(0 0 5px rgba(0, 224, 255, 0.5));
-      }
-      100% {
-        filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));
-      }
     }
 
     .brand-text p {
@@ -272,24 +379,10 @@
       background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
       color: #000;
       box-shadow: 0 8px 25px rgba(0, 224, 255, 0.3);
-      animation: pulseBtn 2s infinite;
-    }
-
-    @keyframes pulseBtn {
-      0% {
-        box-shadow: 0 8px 25px rgba(0, 224, 255, 0.3);
-      }
-      50% {
-        box-shadow: 0 8px 30px rgba(0, 224, 255, 0.6);
-      }
-      100% {
-        box-shadow: 0 8px 25px rgba(0, 224, 255, 0.3);
-      }
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      animation: none;
       box-shadow: 0 12px 30px rgba(0, 224, 255, 0.4);
     }
 
@@ -503,240 +596,6 @@
       color: var(--accent-primary);
     }
 
-    /* Verification Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .verification-modal {
-      background: var(--bg-card);
-      padding: 40px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-      overflow: hidden;
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .verification-modal {
-      transform: scale(1);
-    }
-
-    .verification-modal::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 20px;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .close-modal:hover {
-      color: var(--text-primary);
-    }
-
-    .verification-icon {
-      font-size: 60px;
-      margin-bottom: 20px;
-      color: var(--accent-primary);
-      animation: bounce 2s infinite;
-      text-align: center;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-
-    .verification-title {
-      font-size: 28px;
-      margin-bottom: 15px;
-      background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-align: center;
-    }
-
-    .verification-description {
-      color: var(--text-secondary);
-      margin-bottom: 30px;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .verification-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
-
-    .form-label {
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    .form-input {
-      padding: 14px 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 2px rgba(0, 224, 255, 0.2);
-    }
-
-    .verification-status {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      display: none;
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    .status-success {
-      background: rgba(34, 197, 94, 0.1);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      color: #4ade80;
-    }
-
-    .status-error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #f87171;
-    }
-
-    .status-loading {
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #60a5fa;
-    }
-
-    .loading-spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent-primary);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .verification-steps {
-      display: flex;
-      justify-content: space-between;
-      margin: 30px 0;
-      position: relative;
-    }
-
-    .verification-steps::before {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--border-color);
-      z-index: 1;
-    }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .step-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 2px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .step.active .step-icon {
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      border-color: var(--accent-primary);
-      color: #000;
-    }
-
-    .step-text {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    .step.active .step-text {
-      color: var(--accent-primary);
-    }
-
     /* Footer */
     footer {
       padding: 40px 0;
@@ -785,6 +644,27 @@
       }
     }
 
+    /* Security Badge */
+    .security-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      z-index: 100;
+    }
+
+    .security-badge.active {
+      color: #10b981;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .hero {
@@ -814,23 +694,8 @@
         display: none;
       }
       
-      .verification-modal {
-        padding: 30px 20px;
-      }
-      
-      .verification-steps {
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
-      }
-      
-      .verification-steps::before {
-        display: none;
-      }
-      
-      .step {
-        flex-direction: row;
-        gap: 10px;
+      .protection-title {
+        font-size: 24px;
       }
     }
 
@@ -851,157 +716,161 @@
         padding: 12px 20px;
         font-size: 14px;
       }
+      
+      .protection-status {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="particles" id="particles"></div>
   
-  <!-- Verification Modal -->
-  <div class="modal-overlay" id="verificationModal">
-    <div class="verification-modal">
-      <button class="close-modal" id="closeModal">
-        <i class="fas fa-times"></i>
-      </button>
-      
-      <div class="verification-icon">
-        <i class="fas fa-shield-alt"></i>
-      </div>
-      <h2 class="verification-title">Проверка безопасности</h2>
-      <p class="verification-description">
-        Для доступа к материалам необходимо пройти проверку безопасности. 
-        Это защищает наши серверы от автоматических атак.
-      </p>
-      
-      <div class="verification-steps">
-        <div class="step active">
-          <div class="step-icon">1</div>
-          <div class="step-text">Ввод данных</div>
-        </div>
-        <div class="step">
-          <div class="step-icon">2</div>
-          <div class="step-text">Проверка</div>
-        </div>
-        <div class="step">
-          <div class="step-icon">3</div>
-          <div class="step-text">Доступ</div>
-        </div>
+  <!-- DDoS Protection Screen -->
+  <div class="ddos-protection" id="ddosProtection">
+    <div class="protection-logo">
+      <i class="fas fa-shield-alt"></i>
+    </div>
+    
+    <h1 class="protection-title">Проверка безопасности</h1>
+    <p class="protection-subtitle">Защита от DDoS атак и ботов</p>
+    
+    <div class="protection-status">
+      <div class="status-item">
+        <span class="status-name">Проверка браузера</span>
+        <span class="status-value status-checking" id="browserCheck">
+          <i class="fas fa-spinner fa-spin"></i> Проверка...
+        </span>
       </div>
       
-      <form class="verification-form" id="verificationForm">
-        <div class="form-group">
-          <label for="username" class="form-label">Имя пользователя</label>
-          <input type="text" id="username" class="form-input" placeholder="Введите ваше имя" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="code" class="form-label">Код доступа</label>
-          <input type="text" id="code" class="form-input" placeholder="Введите код из письма" required>
-        </div>
-        
-        <button type="submit" class="btn btn-primary" id="verifyBtn">
-          <i class="fas fa-check-circle"></i> Пройти проверку
-        </button>
-      </form>
+      <div class="status-item">
+        <span class="status-name">Анализ поведения</span>
+        <span class="status-value status-checking" id="behaviorCheck">
+          <i class="fas fa-spinner fa-spin"></i> Ожидание...
+        </span>
+      </div>
       
-      <div class="verification-status" id="statusMessage"></div>
+      <div class="status-item">
+        <span class="status-name">Защита от ботов</span>
+        <span class="status-value status-checking" id="botCheck">
+          <i class="fas fa-spinner fa-spin"></i> Сканирование...
+        </span>
+      </div>
+      
+      <div class="status-item">
+        <span class="status-name">DDoS защита</span>
+        <span class="status-value status-checking" id="ddosCheck">
+          <i class="fas fa-spinner fa-spin"></i> Активна
+        </span>
+      </div>
+    </div>
+    
+    <div class="loading-bar">
+      <div class="loading-progress" id="loadingProgress"></div>
+    </div>
+    
+    <div class="protection-timer" id="protectionTimer">
+      Примерное время проверки: <span id="timerValue">5</span> секунд
     </div>
   </div>
   
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <div class="brand">
-          <div class="logo">CZ</div>
-          <div class="brand-text">
-            <h1>Crack Zenith DLC</h1>
-            <p>Официальная страница — Zenith Crack DLC</p>
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="brand">
+            <div class="logo">CZ</div>
+            <div class="brand-text">
+              <h1>Crack Zenith DLC</h1>
+              <p>Официальная страница — Zenith Crack DLC</p>
+            </div>
+          </div>
+          <nav>
+            <a href="#downloads">Скачать</a>
+            <a href="#about">О проекте</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Crack Zenith DLC</h2>
+          <p class="lead">Выбери реальное преимущество.</p>
+          
+          <div class="buttons">
+            <a class="btn btn-primary" href="https://workupload.com/start/Q2uP2vv2mxv" target="_blank">
+              <i class="fas fa-download"></i> Скачать сейчас
+            </a>
+          </div>
+
+          <div class="features">
+            <div class="feature">
+              <div class="feature-icon" style="color: var(--accent-primary);">⚡</div>
+              <h4>Лёгкие сборки</h4>
+              <p>Простая установка и минимальные зависимости.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" style="color: #60a5fa;">📱</div>
+              <h4>Работает на всех устройствах</h4>
+              <p>Полная совместимость с различными системами.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" style="color: #f472b6;">🔒</div>
+              <h4>Контроль версий</h4>
+              <p>Приватные сборки и управление доступом.</p>
+            </div>
           </div>
         </div>
-        <nav>
-          <a href="#downloads">Скачать</a>
-          <a href="#about">О проекте</a>
-        </nav>
+
+        <div class="preview">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/v1vHrJX0NBg" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid" id="downloads">
+        <article class="post">
+          <h3>Сборки для скачивания</h3>
+          <ul>
+            <li>zenith crack.zip — 13 MB</li>
+            <li>zenith crack v2.0.zip — 15 MB</li>
+            <li>zenith crack pro.zip — 18 MB</li>
+          </ul>
+        </article>
+
+        <article class="post">
+          <h3>Новости</h3>
+          <p>01.10.25 - was cracked</p>
+          <p>15.09.25 - beta release</p>
+          <p>01.09.25 - project started</p>
+        </article>
+
+        <article class="post" id="about">
+          <h3>О проекте</h3>
+          <p>Самый пиздатый кряк зенита на данный момент. Мы предлагаем стабильные сборки с регулярными обновлениями и полной поддержкой.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© <span id="year"></span> Crack Zenith DLC | Защищено от DDoS атак</p>
       </div>
+    </footer>
+    
+    <div class="security-badge" id="securityBadge">
+      <i class="fas fa-shield-alt"></i>
+      <span>Защита активна</span>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Crack Zenith DLC</h2>
-        <p class="lead">Выбери реальное преимущество.</p>
-        
-        <div class="buttons">
-          <a class="btn btn-primary" href="#" id="downloadBtn">
-            <i class="fas fa-shield-alt"></i> Пройти проверку для скачивания
-          </a>
-        </div>
-
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon" style="color: var(--accent-primary);">⚡</div>
-            <h4>Лёгкие сборки</h4>
-            <p>Простая установка и минимальные зависимости.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon" style="color: #60a5fa;">📱</div>
-            <h4>Работает на всех устройствах</h4>
-            <p>Полная совместимость с различными системами.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon" style="color: #f472b6;">🔒</div>
-            <h4>Контроль версий</h4>
-            <p>Приватные сборки и управление доступом.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview">
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/v1vHrJX0NBg" 
-                  title="YouTube video player" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-grid" id="downloads">
-      <article class="post">
-        <h3>Сборки для скачивания</h3>
-        <ul>
-          <li>zenith crack.zip — 13 MB</li>
-          <li>zenith crack v2.0.zip — 15 MB</li>
-          <li>zenith crack pro.zip — 18 MB</li>
-        </ul>
-      </article>
-
-      <article class="post">
-        <h3>Новости</h3>
-        <p>01.10.25 - was cracked</p>
-        <p>15.09.25 - beta release</p>
-        <p>01.09.25 - project started</p>
-      </article>
-
-      <article class="post" id="about">
-        <h3>О проекте</h3>
-        <p>Самый пиздатый кряк зенита на данный момент. Мы предлагаем стабильные сборки с регулярными обновлениями и полной поддержкой.</p>
-      </article>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Crack Zenith DLC | Система защищена от DDoS атак</p>
-    </div>
-  </footer>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1014,17 +883,10 @@
       const particle = document.createElement('div');
       particle.classList.add('particle');
       
-      // Random position
       const left = Math.random() * 100;
       const top = Math.random() * 100;
-      
-      // Random size
       const size = Math.random() * 3 + 1;
-      
-      // Random animation duration
       const duration = Math.random() * 20 + 10;
-      
-      // Random delay
       const delay = Math.random() * 5;
       
       particle.style.left = `${left}%`;
@@ -1037,86 +899,86 @@
       particlesContainer.appendChild(particle);
     }
     
-    // Modal functionality
-    const downloadBtn = document.getElementById('downloadBtn');
-    const verificationModal = document.getElementById('verificationModal');
-    const closeModal = document.getElementById('closeModal');
-    const verificationForm = document.getElementById('verificationForm');
-    const statusMessage = document.getElementById('statusMessage');
-    const verifyBtn = document.getElementById('verifyBtn');
-    const steps = document.querySelectorAll('.step');
+    // DDoS Protection System
+    const ddosProtection = document.getElementById('ddosProtection');
+    const mainContent = document.getElementById('mainContent');
+    const loadingProgress = document.getElementById('loadingProgress');
+    const timerValue = document.getElementById('timerValue');
+    const securityBadge = document.getElementById('securityBadge');
     
-    downloadBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      verificationModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+    // Status elements
+    const browserCheck = document.getElementById('browserCheck');
+    const behaviorCheck = document.getElementById('behaviorCheck');
+    const botCheck = document.getElementById('botCheck');
+    const ddosCheck = document.getElementById('ddosCheck');
     
-    closeModal.addEventListener('click', function() {
-      verificationModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+    // Simulate DDoS protection check
+    let progress = 0;
+    let timeLeft = 5;
     
-    verificationModal.addEventListener('click', function(e) {
-      if (e.target === verificationModal) {
-        verificationModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    const protectionInterval = setInterval(() => {
+      progress += 20;
+      timeLeft -= 1;
+      
+      loadingProgress.style.width = `${progress}%`;
+      timerValue.textContent = timeLeft;
+      
+      // Update status checks
+      if (progress >= 25) {
+        browserCheck.innerHTML = '<i class="fas fa-check"></i> Пройдена';
+        browserCheck.className = 'status-value status-success';
       }
-    });
-    
-    // Verification form handling
-    verificationForm.addEventListener('submit', function(e) {
-      e.preventDefault();
       
-      // Show loading state
-      statusMessage.className = 'verification-status status-loading';
-      statusMessage.innerHTML = '<div class="loading-spinner"></div> Проверка данных...';
-      statusMessage.style.display = 'block';
+      if (progress >= 50) {
+        behaviorCheck.innerHTML = '<i class="fas fa-check"></i> Успешно';
+        behaviorCheck.className = 'status-value status-success';
+      }
       
-      verifyBtn.disabled = true;
+      if (progress >= 75) {
+        botCheck.innerHTML = '<i class="fas fa-check"></i> Заблокировано';
+        botCheck.className = 'status-value status-success';
+      }
       
-      // Simulate verification process
-      setTimeout(() => {
-        // Update steps
-        steps[0].classList.remove('active');
-        steps[1].classList.add('active');
+      if (progress >= 100) {
+        ddosCheck.innerHTML = '<i class="fas fa-check"></i> Активна';
+        ddosCheck.className = 'status-value status-success';
         
-        // Simulate second step
+        clearInterval(protectionInterval);
+        
+        // Show main content after protection check
         setTimeout(() => {
-          // Random success (80%) or failure (20%)
-          const isSuccess = Math.random() > 0.2;
-          
-          if (isSuccess) {
-            steps[1].classList.remove('active');
-            steps[2].classList.add('active');
-            
-            statusMessage.className = 'verification-status status-success';
-            statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> Проверка пройдена! Перенаправление на скачивание...';
-            
-            // Redirect after success
-            setTimeout(() => {
-              window.location.href = 'https://workupload.com/start/Q2uP2vv2mxv';
-            }, 2000);
-          } else {
-            statusMessage.className = 'verification-status status-error';
-            statusMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Ошибка проверки. Проверьте введенные данные.';
-            verifyBtn.disabled = false;
-          }
-        }, 1500);
-      }, 1500);
-    });
+          ddosProtection.style.display = 'none';
+          mainContent.style.display = 'block';
+          securityBadge.classList.add('active');
+        }, 1000);
+      }
+    }, 1000);
     
-    // Add input animations
-    const inputs = document.querySelectorAll('.form-input');
-    inputs.forEach(input => {
-      input.addEventListener('focus', function() {
-        this.parentElement.style.transform = 'translateY(-2px)';
-      });
+    // Additional security checks
+    function performSecurityChecks() {
+      // Check if JavaScript is enabled (basic bot detection)
+      if (typeof window === 'undefined') {
+        window.location.reload();
+      }
       
-      input.addEventListener('blur', function() {
-        this.parentElement.style.transform = 'translateY(0)';
-      });
-    });
+      // Check screen resolution (basic human detection)
+      if (screen.width < 100 || screen.height < 100) {
+        window.location.reload();
+      }
+      
+      // Check user agent
+      const userAgent = navigator.userAgent;
+      if (!userAgent || userAgent.length < 10) {
+        window.location.reload();
+      }
+      
+      // Add random delay to prevent automated requests
+      const randomDelay = Math.random() * 2000 + 1000;
+      return new Promise(resolve => setTimeout(resolve, randomDelay));
+    }
+    
+    // Run security checks
+    performSecurityChecks();
     
     // Add scroll animations
     const observerOptions = {
@@ -1133,11 +995,13 @@
       });
     }, observerOptions);
     
-    // Observe elements for scroll animations
-    document.querySelectorAll('.feature, .post').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
+    // Observe elements for scroll animations after protection check
+    setTimeout(() => {
+      document.querySelectorAll('.feature, .post').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+      });
+    }, 6000);
   </script>
 </body>
 </html>
