@@ -21,10 +21,23 @@
       color-scheme: dark;
     }
 
+    /* Отключаем выделение текста на всем сайте */
     * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    /* Разрешаем выделение только для текстовых элементов */
+    p, span, h1, h2, h3, h4, h5, h6, li, a, .brand-text p, .hero-content .lead, .feature p, .post p, .post ul, .screenshot-caption, .protection-subtitle, .status-name, .status-value, .protection-timer, footer p {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
     }
 
     html, body {
@@ -861,7 +874,9 @@
       <div class="container">
         <div class="header-content">
           <div class="brand">
-            <img src="src/logo.jpg" alt="Logo" class="logo">
+            <div class="logo">
+              <i class="fas fa-gamepad"></i>
+            </div>
             <div class="brand-text">
               <h1>Crack Zenith DLC</h1>
               <p>Официальная страница — Zenith Crack DLC</p>
@@ -922,11 +937,15 @@
         <h2 class="section-title">Скриншоты</h2>
         <div class="screenshots-grid">
           <div class="screenshot">
-            <img src="src/screen2.png" alt="Настройки Zenith DLC" class="screenshot-img">
+            <div class="screenshot-img" style="background: linear-gradient(135deg, #1a2332, #2d3748); display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+              <i class="fas fa-image" style="font-size: 48px;"></i>
+            </div>
             <div class="screenshot-caption">Интерфейс Zenith DLC - настройки и возможности</div>
           </div>
           <div class="screenshot">
-            <img src="src/screen1.png" alt="Интерфейс Zenith DLC" class="screenshot-img">
+            <div class="screenshot-img" style="background: linear-gradient(135deg, #1a2332, #2d3748); display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+              <i class="fas fa-image" style="font-size: 48px;"></i>
+            </div>
             <div class="screenshot-caption">Расширенные настройки Zenith DLC</div>
           </div>
         </div>
@@ -1099,4 +1118,3 @@
   </script>
 </body>
 </html>
-
