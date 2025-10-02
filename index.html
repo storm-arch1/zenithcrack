@@ -596,6 +596,83 @@
       color: var(--accent-primary);
     }
 
+    /* Screenshots Section */
+    .screenshots {
+      margin: 80px 0;
+    }
+
+    .section-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 3px;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .screenshot {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .screenshot:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .screenshot:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .screenshot:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .screenshot-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .screenshot:hover .screenshot-img {
+      transform: scale(1.05);
+    }
+
+    .screenshot-caption {
+      padding: 15px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
     /* Footer */
     footer {
       padding: 40px 0;
@@ -674,6 +751,10 @@
       
       .content-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .screenshots-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -788,6 +869,7 @@
           </div>
           <nav>
             <a href="#downloads">Скачать</a>
+            <a href="#screenshots">Скриншоты</a>
             <a href="#about">О проекте</a>
           </nav>
         </div>
@@ -832,6 +914,20 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
             </iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="screenshots" id="screenshots">
+        <h2 class="section-title">Скриншоты</h2>
+        <div class="screenshots-grid">
+          <div class="screenshot">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Интерфейс Zenith DLC" class="screenshot-img">
+            <div class="screenshot-caption">Интерфейс Zenith DLC - настройки и возможности</div>
+          </div>
+          <div class="screenshot">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Настройки Zenith DLC" class="screenshot-img">
+            <div class="screenshot-caption">Расширенные настройки Zenith DLC</div>
           </div>
         </div>
       </section>
@@ -995,7 +1091,7 @@
     
     // Observe elements for scroll animations after protection check
     setTimeout(() => {
-      document.querySelectorAll('.feature, .post').forEach(el => {
+      document.querySelectorAll('.feature, .post, .screenshot').forEach(el => {
         el.style.animationPlayState = 'paused';
         observer.observe(el);
       });
@@ -1003,4 +1099,3 @@
   </script>
 </body>
 </html>
-
